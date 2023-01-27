@@ -1,14 +1,28 @@
 let input_fuelType = document.getElementById('ec_fuel-type')
 let input_tankDiameter = document.getElementById('ec_tank-diameter');
+let input_tankHeight = document.getElementById('ec_tank-height');
+let input_legHeight = document.getElementById('ec_leg-height');
 let input_roofType = document.getElementById('ec_roof-type');
 let input_roofShape = document.getElementById('ec_roof-shape');
-let inputsArr = [input_fuelType, input_tankDiameter, input_roofType, input_roofShape]
+let inputsArr = [input_fuelType, input_tankDiameter, input_tankHeight, input_legHeight, input_roofType, input_roofShape]
 
 inputsArr.forEach(input => {
   input.addEventListener('change', () => {
     inputs()
   })
 })
+
+const inputGroupsArr = document.querySelectorAll('.sr__range-group');
+inputGroupsArr.forEach((group) => {
+  const range = group.querySelector('.sr__range');
+  const number = group.querySelector('.sr__number');
+  range.addEventListener('input', (e) => {
+    number.value = e.target.value;
+  });
+  number.addEventListener('input', (e) => {
+    range.value = e.target.value;
+  });
+});
 
 
 
@@ -20,10 +34,10 @@ function inputs(){
   ---------------------------------------------------------*/
   let value_fuelType = input_fuelType.value;
   let value_tankDiameter = input_tankDiameter.value;
+  let value_tankHeight = input_tankHeight.value;
+  let value_legHeight = input_legHeight.value;
   let value_roofType = input_roofType.value;
   let value_roofShape = input_roofShape.value;
-
-
   
   /*--------------------------------------------------------
     Fuel Properties
@@ -52,8 +66,10 @@ function inputs(){
   let i_roofType = value_roofType || "external-floating"; //16
   let i_roofShape = value_roofShape || "Dome"; //17
   let i_tankDiameter = value_tankDiameter || 100; //18
-  let i_tankHeight = 40; //19
-  let i_letHeight = 12; //20
+  let i_tankHeight = value_tankHeight; //19
+  let i_legHeight = value_legHeight; //20
+
+  console.log(i_legHeight)
 
   let i_controlEfficiency = 0;
 
@@ -106,7 +122,7 @@ function inputs(){
   let pa_tankDiameter = parseInt(i_tankDiameter); //4
   let pa_roofType = i_roofType; //5
   let pa_roofShape = i_roofShape; //6
-  let pa_legHeight = i_letHeight; //7
+  let pa_legHeight = i_legHeight; //7
   let pa_roofSlope = 0.0625; //8
   let pa_roofOutage = i_roofShape == "cone" ? pa_roofSlope * pa_tankDiameter / 6 : 0.137 * (pa_tankDiameter / 2); //9 
   let pa_sludgeDepth = i_sludgeSedimentDepth / 12; //13
