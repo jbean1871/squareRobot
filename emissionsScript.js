@@ -232,25 +232,25 @@ function inputs(){
   let pr_totalGHGImpactPercent = pr_pumpOutGHGImpactPercent + pr_ventilationGHGImpactPercent + pr_refillingGHGImpactPercent;
 
   
-  function formatDecimals(num){
-    return new Intl.NumberFormat('en-IN', { style: 'decimal', useGrouping: true, minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(num);
+  function formatDecimals(num, places = 2){
+    return new Intl.NumberFormat('en-IN', { style: 'decimal', useGrouping: true, minimumFractionDigits: 0, maximumFractionDigits: [places] }).format(num);
   }
 
-  document.getElementById('pumoutTotalEmissions').innerText = formatDecimals(pr_pumpoutTotalEmissions);
-  document.getElementById('pumpOutGHGImpactLblCO2e').innerText = formatDecimals(pr_pumpOutGHGImpactLblCO2e);
+  document.getElementById('pumoutTotalEmissions').innerText = formatDecimals(pr_pumpoutTotalEmissions, 0);
+  document.getElementById('pumpOutGHGImpactLblCO2e').innerText = formatDecimals(pr_pumpOutGHGImpactLblCO2e, 0);
   document.getElementById('pumpOutGHGImpactLbltCO2e').innerText = formatDecimals(pr_pumpOutGHGImpactLbltCO2e);
 
-  document.getElementById('ventilation').innerText = formatDecimals(pr_ventilation);
-  document.getElementById('ventilationGHGImpactLblCO2e').innerText = formatDecimals(pr_ventilationGHGImpactLblCO2e);
+  document.getElementById('ventilation').innerText = formatDecimals(pr_ventilation, 0);
+  document.getElementById('ventilationGHGImpactLblCO2e').innerText = formatDecimals(pr_ventilationGHGImpactLblCO2e, 0);
   document.getElementById('ventilationGHGImpactLbltCO2e').innerText = formatDecimals(pr_ventilationGHGImpactLbltCO2e);
 
   document.getElementById('refilling').innerText = formatDecimals(pr_refilling, 0);
-  document.getElementById('refillingGHGImpactLblCO2e').innerText = formatDecimals(pr_refillingGHGImpactLblCO2e);
+  document.getElementById('refillingGHGImpactLblCO2e').innerText = formatDecimals(pr_refillingGHGImpactLblCO2e, 0);
   document.getElementById('refillingGHGImpactLbltCO2e').innerText = formatDecimals(pr_refillingGHGImpactLbltCO2e);
 
-  document.getElementById('totalEmissions').innerText = formatDecimals(pr_totalEmissions);
-  document.getElementById('totalGHGImpactLblCO2e').innerText = formatDecimals(pr_totalGHGImpactLblCO2e);
-  document.getElementById('totalGHGImpactLbltCO2e').innerText = formatDecimals(pr_totalGHGImpactLbltCO2e);
+  document.getElementById('totalEmissions').innerText = formatDecimals(pr_totalEmissions, 0);
+  document.getElementById('totalGHGImpactLblCO2e').innerText = formatDecimals(pr_totalGHGImpactLblCO2e, 0);
+  document.getElementById('totalGHGImpactLbltCO2e').innerText = formatDecimals(pr_totalGHGImpactLbltCO2e, 0);
 
   document.getElementById('pumpOutGHGImpactPercent').innerText = Math.round(pr_pumpOutGHGImpactPercent * 100) + "%";
   document.getElementById('ventilationGHGImpactPercent').innerText = Math.round(pr_ventilationGHGImpactPercent * 100) + "%";
