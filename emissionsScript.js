@@ -1,10 +1,10 @@
 let input_fuelType = document.getElementById('ec_fuel-type')
 let input_tankDiameter = document.getElementById('ec_tank-diameter');
-let input_tankHeight = document.getElementById('ec_tank-height');
+// let input_tankHeight = document.getElementById('ec_tank-height');
 let input_legHeight = document.getElementById('ec_leg-height');
 let input_roofType = document.getElementById('ec_roof-type');
 let input_roofShape = document.getElementById('ec_roof-shape');
-let inputsArr = [input_fuelType, input_tankDiameter, input_tankHeight, input_legHeight, input_roofType, input_roofShape]
+let inputsArr = [input_fuelType, input_tankDiameter, input_legHeight, input_roofType, input_roofShape]
 
 inputsArr.forEach(input => {
   input.addEventListener('change', () => {
@@ -18,9 +18,11 @@ inputGroupsArr.forEach((group) => {
   const number = group.querySelector('.sr__number');
   range.addEventListener('input', (e) => {
     number.value = e.target.value;
+    inputs()
   });
   number.addEventListener('input', (e) => {
     range.value = e.target.value;
+    inputs()
   });
 });
 
@@ -34,7 +36,7 @@ function inputs(){
   ---------------------------------------------------------*/
   let value_fuelType = input_fuelType.value;
   let value_tankDiameter = input_tankDiameter.value;
-  let value_tankHeight = input_tankHeight.value;
+  // let value_tankHeight = input_tankHeight.value;
   let value_legHeight = input_legHeight.value;
   let value_roofType = input_roofType.value;
   let value_roofShape = input_roofShape.value;
@@ -66,7 +68,7 @@ function inputs(){
   let i_roofType = value_roofType || "external-floating"; //16
   let i_roofShape = value_roofShape || "Dome"; //17
   let i_tankDiameter = value_tankDiameter || 100; //18
-  let i_tankHeight = value_tankHeight; //19
+  let i_tankHeight = 40; //19
   let i_legHeight = value_legHeight; //20
 
   console.log(i_legHeight)
@@ -233,7 +235,7 @@ function inputs(){
 
   document.getElementById('pumoutTotalEmissions').innerText = formatDecimals(pr_pumpoutTotalEmissions, 3);
   document.getElementById('pumpOutGHGImpactLblCO2e').innerText = formatDecimals(pr_pumpOutGHGImpactLblCO2e, 3);
-  document.getElementById('pumpOutGHGImpactLbltCO2e').innerText = formatDecimals(pr_pumpOutGHGImpactLbltCO2e, 3);
+  document.getElementById('pumpOutGHGImpactLbltCO2e').innerText = pr_pumpOutGHGImpactLbltCO2e.toFixed(2);
 
   document.getElementById('ventilation').innerText = formatDecimals(pr_ventilation, 0);
   document.getElementById('ventilationGHGImpactLblCO2e').innerText = formatDecimals(pr_ventilationGHGImpactLblCO2e, 3);
@@ -241,15 +243,16 @@ function inputs(){
 
   document.getElementById('refilling').innerText = formatDecimals(pr_refilling, 0);
   document.getElementById('refillingGHGImpactLblCO2e').innerText = formatDecimals(pr_refillingGHGImpactLblCO2e, 3);
-  document.getElementById('refillingGHGImpactLbltCO2e').innerText = formatDecimals(pr_refillingGHGImpactLbltCO2e, 3);
+  document.getElementById('refillingGHGImpactLbltCO2e').innerText = pr_refillingGHGImpactLbltCO2e.toFixed(2);
 
   document.getElementById('totalEmissions').innerText = formatDecimals(pr_totalEmissions, 0);
   document.getElementById('totalGHGImpactLblCO2e').innerText = formatDecimals(pr_totalGHGImpactLblCO2e, 0);
   document.getElementById('totalGHGImpactLbltCO2e').innerText = formatDecimals(pr_totalGHGImpactLbltCO2e, 0);
 
-  document.getElementById('pumpOutGHGImpactPercent').innerText = Math.ceil(pr_pumpOutGHGImpactPercent * 100) + "%";
-  document.getElementById('ventilationGHGImpactPercent').innerText = Math.ceil(pr_ventilationGHGImpactPercent * 100) + "%";
-  document.getElementById('refillingGHGImpactPercent').innerText = Math.ceil(pr_refillingGHGImpactPercent * 100) + "%";
+  document.getElementById('pumpOutGHGImpactPercent').innerText = Math.round(pr_pumpOutGHGImpactPercent * 100) + "%";
+  document.getElementById('ventilationGHGImpactPercent').innerText = Math.round(pr_ventilationGHGImpactPercent * 100) + "%";
+  document.getElementById('refillingGHGImpactPercent').innerText = Math.round(pr_refillingGHGImpactPercent * 100) + "%";
+  console.log("PumpOut: ", pr_pumpOutGHGImpactPercent)
 
-  document.getElementById('totalGHGImpactPercent').innerText = Math.ceil(pr_totalGHGImpactPercent * 100) + "%";
+  document.getElementById('totalGHGImpactPercent').innerText = Math.round(pr_totalGHGImpactPercent * 100) + "%";
 }
