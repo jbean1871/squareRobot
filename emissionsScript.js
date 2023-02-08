@@ -1,6 +1,6 @@
 let input_fuelType = document.getElementById('ec_fuel-type')
 let input_tankDiameter = document.getElementById('ec_tank-diameter');
-// let input_tankHeight = document.getElementById('ec_tank-height');
+let legContainer = document.getElementById('sr__leg-container');
 let input_legHeight = document.getElementById('ec_leg-height');
 let input_roofType = document.getElementById('ec_roof-type');
 let input_roofShape = document.getElementById('ec_roof-shape');
@@ -10,6 +10,15 @@ inputsArr.forEach(input => {
   input.addEventListener('change', () => {
     inputs()
   })
+})
+
+input_roofType.addEventListener('change', () => {
+  const type = input_roofType.value;
+  if(type == 'fixed'){
+    legContainer.style.display = "none";
+  } else {
+    legContainer.style.display = "block";
+  }
 })
 
 const inputGroupsArr = document.querySelectorAll('.sr__range-group');
