@@ -209,10 +209,6 @@ function inputs(){
   let pr_ventilation = v_totalEmissions; //I8
   let pr_refilling = parseFloat(i_roofType == "fixed" ? r_totalEmissionsLW : r_totalEmissionsLfl); //I9
   let pr_totalEmissions = pr_pumpoutTotalEmissions + pr_ventilation + pr_refilling; //I10
-  console.log(pr_pumpoutTotalEmissions)
-  console.log(pr_ventilation)
-  console.log(pr_refilling)
-  console.log(pr_totalEmissions)
   
   let pr_pumpOutGHGImpactLblCO2e = pr_pumpoutTotalEmissions * pr_gwp; //J7
   let pr_ventilationGHGImpactLblCO2e = pr_ventilation * pr_gwp; //J8
